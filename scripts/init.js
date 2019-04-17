@@ -99,6 +99,8 @@ module.exports = function(
     build: 'react-scripts build',
     test: 'react-scripts test',
     eject: 'react-scripts eject',
+    bs:make: 'bsb -make-world -w',
+    bs:clean: 'bsb -clean-world',
   };
 
   // Setup the eslint config
@@ -193,6 +195,37 @@ module.exports = function(
       console.error(`\`${command} ${args.join(' ')}\` failed`);
       return;
     }
+  }
+
+  // Install devDependencies needed by Reason
+  const reasonDevDeps = [
+    'bs-platform',
+    'reason-react',
+    '@glennsl/bs-jest',
+  ];
+
+  args = [];
+  if (useYarn) {
+    command = 'yarnpkg';
+    args = ['add'];
+  } else {
+    command = 'npm';
+    args = ['install', '--save', verbose && '--verbose'].filter(e => e);
+  }
+  args.push(...reasonDevDeps);
+
+  const installMessage = 'Installing ' +
+    reasonDevDeps.slice(0, -1).map(dep => chalk.blue(dep)).join(', ') +
+    ', and ' +
+    chalk.blue(reasonDevDeps[reasonDevDeps.length - 1]) +
+    ' using ' + command + '...'
+
+  console.log(installMessage);
+  console.log();
+  const reasonDepsProc = spawn.sync(command, args, { stdio: 'inherit' });
+  if (reasonDepsProc.status !== 0) {
+    console.error(`\`${command} ${args.join(' ')}\` failed`);
+    return;
   }
 
   if (useTypeScript) {
