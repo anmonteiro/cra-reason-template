@@ -1,6 +1,4 @@
-<h1 align="center">
-  CRA Reason Template
- </h1>
+# CRA Reason Template
 
 <pre align="center">
   $ yarn create react-app my-app --scripts-version cra-reason-template
