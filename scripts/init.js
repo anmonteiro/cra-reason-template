@@ -99,7 +99,8 @@ module.exports = function(
     build: 'react-scripts build',
     test: 'react-scripts test',
     eject: 'react-scripts eject',
-    'bs:make': 'bsb -make-world -w',
+    'bs:make': 'bsb -make-world',
+    'bs:watch': 'bsb -make-world -w',
     'bs:clean': 'bsb -clean-world',
   };
 
