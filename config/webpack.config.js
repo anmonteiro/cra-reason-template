@@ -323,7 +323,7 @@ module.exports = function(webpackEnv) {
                 baseConfig: {
                   extends: [require.resolve('eslint-config-react-app')],
                 },
-                ignore: false,
+                ignore: '**/*.bs.js',
                 useEslintrc: false,
                 // @remove-on-eject-end
               },
