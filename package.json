@@ -1,6 +1,6 @@
 {
   "name": "cra-reason-template",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Configuration and scripts for ReasonReact on Create React App.",
   "repository": {
     "type": "git",
